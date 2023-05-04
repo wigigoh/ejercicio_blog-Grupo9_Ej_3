@@ -23,19 +23,20 @@ async function showHome(req, res) {
   res.render("home", { articles });
 }
 
-async function showContact(req, res) {
-  res.render("contact");
+async function showArticle(req, res) {
+  const article = await Article.findByPk(req.params.id);
+
+  res.render("article", { article });
 }
 
-async function showAboutUs(req, res) {
-  res.render("aboutUs");
+async function showAdmin(req, res) {
+  res.render("admin");
 }
-
 // Otros handlers...
 // ...
 
 module.exports = {
   showHome,
-  showContact,
-  showAboutUs,
+  showArticle,
+  showAdmin,
 };

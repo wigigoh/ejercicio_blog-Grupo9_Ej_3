@@ -15,10 +15,20 @@ class Article extends Model {
         content: {
           type: DataTypes.TEXT,
         },
+        image: {
+          type: DataTypes.BLOB,
+        },
+        createdAt: {
+          type: DataTypes.DATE,
+        },
+        userId: {
+          type: DataTypes.BIGINT.UNSIGNED,
+        },
       },
       {
         sequelize,
         modelName: "article",
+        timestamps: false,
       },
     );
 
