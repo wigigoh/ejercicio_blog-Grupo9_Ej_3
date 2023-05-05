@@ -1,25 +1,24 @@
 </html>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ejercicio MySQL</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <%- include("./partials/navbar.ejs") %>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+</head>
+
+<body>
+
+  <%- include("./partials/navbar.ejs") %>
+
     <div class="container-fluid w-75 pt-5">
       <div class="pb-4 d-flex justify-content-between">
         <h1>Listado de Usuarios</h1>
-        <a href="/usuarios/crear" type="submit" class="btn btn-success mb-3"
-          >Nuevo Usuario</a
-        >
+        <a href="/usuarios/crear" type="submit" class="btn btn-success mb-3">Nuevo Usuario</a>
       </div>
       <table class="table table-light table-bordered table-striped">
         <thead>
@@ -33,35 +32,36 @@
         </thead>
         <tbody>
           <% for (user of users) {%>
-          <tr>
-            <td><%=user.id%></td>
-            <td><%=user.firstname%></td>
-            <td><%=user.lastname%></td>
-            <td><%=user.age%></td>
-            <td>
-              <a
-                href="/usuarios/editar/<%=user.id%>"
-                type="submit"
-                class="btn btn-primary mb-3"
-                >Editar</a
-              >
-              <a
-                href="/usuarios/eliminar/<%=user.id%>"
-                type="submit"
-                class="btn btn-danger mb-3"
-                >Eliminar</a
-              >
-              <% } %>
-            </td>
-          </tr>
+            <tr>
+              <td>
+                <%=user.id%>
+              </td>
+              <td>
+                <%=user.firstname%>
+              </td>
+              <td>
+                <%=user.lastname%>
+              </td>
+              <td>
+                <%=user.age%>
+              </td>
+              <td>
+                <a href="/usuarios/editar/<%=user.id%>" type="submit" class="btn btn-primary mb-3">Editar</a>
+                <a href="/usuarios/eliminar/<%=user.id%>" type="submit" class="btn btn-danger mb-3">Eliminar</a>
+                <% } %>
+              </td>
+            </tr>
         </tbody>
       </table>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"></script>
+
+</body>
+
 </html>
