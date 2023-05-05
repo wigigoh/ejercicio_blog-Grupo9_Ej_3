@@ -30,8 +30,11 @@ async function showArticle(req, res) {
 }
 
 async function showAdmin(req, res) {
-  res.render("admin");
+  const articles = await Article.findAll();
+  console.log(articles);
+  res.render("admin", { articles });
 }
+
 // Otros handlers...
 // ...
 
