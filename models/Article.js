@@ -18,9 +18,6 @@ class Article extends Model {
         image: {
           type: DataTypes.BLOB,
         },
-        createdAt: {
-          type: DataTypes.DATE,
-        },
         userId: {
           type: DataTypes.BIGINT.UNSIGNED,
         },
@@ -28,7 +25,6 @@ class Article extends Model {
       {
         sequelize,
         modelName: "article",
-        timestamps: false,
       },
     );
 

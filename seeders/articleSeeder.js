@@ -11,8 +11,6 @@
  * Suele ser común que en los seeders exista un `for` donde se define la
  * cantidad de registros de prueba que se insertarán en la base de datos.
  * En este ejemplo se están insertando 500 artículos con textos ficticios.
- *
- *
  */
 
 const { faker } = require("@faker-js/faker");
@@ -27,6 +25,7 @@ module.exports = async () => {
     articles.push({
       title: faker.lorem.sentence(5),
       content: faker.lorem.paragraphs(),
+      // authorId: faker.datatype.number({ min: 1, max: 100 }),
     });
   }
 

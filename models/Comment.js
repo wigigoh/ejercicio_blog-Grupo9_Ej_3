@@ -15,14 +15,10 @@ class Comment extends Model {
         userComment: {
           type: DataTypes.TEXT,
         },
-        commentDate: {
-          type: DataTypes.DATE,
-        },
       },
       {
         sequelize,
         modelName: "comment",
-        timestamps: false,
       },
     );
     return Comment;
