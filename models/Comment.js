@@ -16,6 +16,7 @@ class Comment extends Model {
           type: DataTypes.TEXT,
         },
       },
+
       {
         sequelize,
         modelName: "comment",

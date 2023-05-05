@@ -16,10 +16,7 @@ class Article extends Model {
           type: DataTypes.TEXT,
         },
         image: {
-          type: DataTypes.BLOB,
-        },
-        userId: {
-          type: DataTypes.BIGINT.UNSIGNED,
+          type: DataTypes.STRING,
         },
       },
       {
