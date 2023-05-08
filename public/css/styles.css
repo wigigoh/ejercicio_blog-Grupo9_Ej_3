@@ -20,3 +20,11 @@
 .post {
   all: unset;
 }
+.articles {
+  max-height: calc(100vh - 100px);
+  overflow-y: scroll;
+}
+
+.articles::-webkit-scrollbar {
+  display: none;
+}
