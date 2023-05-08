@@ -14,8 +14,8 @@ module.exports = (app) => {
    * en inglés.
    */
 
-  app.use("/admin", adminRoutes);
   app.use("/", articleRoutes);
+  app.use("/admin", adminRoutes);
   app.use("/api", apiRoutes);
   // app.use("/articulo/:id", articleRoutes);
 };

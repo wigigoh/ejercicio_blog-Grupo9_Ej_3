@@ -58,8 +58,8 @@
     </div>
 
     <div class="container mt-5">
-      <h2 class="fw-bold">Comments (<%= comments.length %>)</h2>
-      <% for (const comment of comments) { %>
+      <h2 class="fw-bold">Comments (<%= article.comments.length %>)</h2>
+      <% for (const comment of article.comments) { %>
 
       <div class="row border-bottom mt-3">
         <p>"<%= comment.userComment %>"</p>

@@ -1,11 +1,14 @@
-const { Article, Comment } = require("../models");
+const { Article, Comment, Author } = require("../models");
 const { format } = require("date-fns");
 const { es } = require("date-fns/locale");
 
 // Display a listing of the resource.
 
 async function index(req, res) {
-  const articles = await Article.findAll({ include: "author", sort: ["createdAt", "DESC"] });
+  const articles = await Article.findAll({
+    include: [Author, Comment],
+    sort: ["createdAt", "DESC"],
+  });
 
   articles.forEach((article) => {
     article.dataValues.createdAt = format(article.dataValues.createdAt, "dd 'de' MMMM','  yyyy", {
@@ -17,14 +20,13 @@ async function index(req, res) {
 
 // Display the specified resource.
 async function show(req, res) {
-  const article = await Article.findByPk(req.params.id, { include: "author" });
+  const article = await Article.findByPk(req.params.id, { include: [Author, Comment] });
 
   article.dataValues.createdAt = format(article.dataValues.createdAt, "dd 'de' MMMM','  yyyy", {
     locale: es,
   });
 
-  const comments = await Comment.findAll({ where: { articleId: req.params.id } });
-  return res.render("article", { article, comments });
+  return res.render("article", { article });
   // res.json(article)
 }
 
@@ -38,7 +40,7 @@ async function store(req, res) {
   await Article.Create({
     title: req.body.title,
     content: req.body.content,
-    authorId: req.body.authorId,
+    authorId: 88,
   });
   res.redirect(`/:${id}`);
 }
