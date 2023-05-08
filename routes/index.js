@@ -3,22 +3,9 @@
  * Una alternativa podría ser organizar las rutas por entidad:
  */
 
-const authorRoutes = require("./adminRoutes");
+const adminRoutes = require("./adminRoutes");
 const articleRoutes = require("./articleRoutes");
-const commentRoutes = require("./commentRoutes");
-
-/**
- * Otra alternativa podría ser organizar las rutas según su nivel de
- * privacidad (ej: si son rutas públicas o privadas).
- *
- * En `publicRoutes` podrían estar las rutas relacionadas con páginas como
- * Home, Contacto y Sobre Nosotros. En `privateRoutes` podrían estar las rutas
- * relacionados al Panel de Control (Admin). Notar que si se está construyendo
- * una API esta alternativa no tendría sentido.
- */
-
-const publicRoutes = require("./publicRoutes");
-const privateRoutes = require("./privateRoutes");
+const apiRoutes = require("./commentRoutes");
 
 module.exports = (app) => {
   /**
@@ -28,12 +15,8 @@ module.exports = (app) => {
    * en inglés.
    */
 
-  //app.use("/usuarios", authorRoutes);
-  app.use("/articulo/:id", articleRoutes);
-  app.use("/admin", articleRoutes);
-  //app.use("/comentarios", commentRoutes);
+  // app.use("/", articleRoutes);
+  // app.use("/articulo/:id", articleRoutes);
 
-  //app.use("/", publicRoutes);
-  app.use("/", articleRoutes);
-  //app.use("/panel", privateRoutes);
+  app.use("/admin", adminRoutes);
 };

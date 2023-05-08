@@ -18,17 +18,6 @@
 
 const { Article } = require("../models");
 
-async function showHome(req, res) {
-  const articles = await Article.findAll();
-  res.render("home", { articles });
-}
-
-async function showArticle(req, res) {
-  const article = await Article.findByPk(req.params.id);
-
-  res.render("article", { article });
-}
-
 async function showAdmin(req, res) {
   const articles = await Article.findAll();
   console.log(articles);
@@ -39,7 +28,5 @@ async function showAdmin(req, res) {
 // ...
 
 module.exports = {
-  showHome,
-  showArticle,
   showAdmin,
 };

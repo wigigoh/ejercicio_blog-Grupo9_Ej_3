@@ -3,14 +3,14 @@ const { Article, Comment } = require("../models");
 // Display a listing of the resource.
 async function index(req, res) {
   const article = await Article.findAll({ include: "author" });
-  res.json(article);
+  res.render("home", article);
 }
 
 // Display the specified resource.
 async function show(req, res) {
   const article = await Article.findByPk(req.params.id, { include: "author" });
   const comments = await Comment.findAll({ where: { articleId: req.params.id } });
-  res.json({ article, comments });
+  res.render("article", { article, comments });
 }
 
 // Show the form for creating a new resource
