@@ -16,3 +16,7 @@
   background: url("../img/blog-header.jpg") no-repeat center center;
   background-size: cover;
 }
+
+.post {
+  all: unset;
+}

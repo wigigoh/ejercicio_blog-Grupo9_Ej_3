@@ -24,7 +24,7 @@
       <table class="table table-light table-bordered table-striped">
         <thead>
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col" class="text-center">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Content</th>
             <th scope="col">Image</th>
@@ -36,7 +36,7 @@
         <tbody>
           <% for (const article of articles) {%>
           <tr>
-            <td class="fw-bold"><%=article.id%></td>
+            <td class="fw-bold text-center"><%=article.id%></td>
             <td class="w-25"><%=article.title%></td>
             <td class="text-truncate" style="max-width: 300px"><%=article.content%></td>
             <td>

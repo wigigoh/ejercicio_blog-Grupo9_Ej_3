@@ -31,13 +31,15 @@
     <div class="container mt-3">
       <% for (const art of articles) { %>
 
-      <div class="row mt-3 border-bottom">
-        <h2><%= art.title %></h2>
-        <p class="text-body-secondary">
-          Creado por <%= art.author.authorFirstname %> <%= art.author.authorLastname %> el <%=
-          art.createdAt %>
-        </p>
-      </div>
+      <a class="post" href="/<%= art.id%>">
+        <div class="row mt-3 border-bottom">
+          <h2><%= art.title %></h2>
+          <p class="text-body-secondary">
+            Creado por <%= art.author.authorFirstname %> <%= art.author.authorLastname %> el <%=
+            art.createdAt %>
+          </p>
+        </div>
+      </a>
       <% } %>
     </div>
 

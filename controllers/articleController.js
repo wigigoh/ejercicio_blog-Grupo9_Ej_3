@@ -35,7 +35,7 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  await Article.bulkCreate({
+  await Article.Create({
     title: req.body.title,
     content: req.body.content,
     authorId: req.body.authorId,
