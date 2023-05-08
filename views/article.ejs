@@ -11,12 +11,63 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
   <body>
     <%- include("./partials/navbar.ejs") %>
 
-    <p>asdjhdasjhdasjsadjsadj</p>
+    <header class="masthead bg-black bg-img">
+      <div class="container h-50 text-white">
+        <div class="row h-100 align-items-center">
+          <div class="col-12">
+            <h1 class="fw-bold"><%= article.title %></h1>
+            <p>
+              Creado por <%= article.author.authorFirstname %> <%= article.author.authorLastname %>
+              el <%= article.createdAt %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mt-3">
+      <div class="row mt-3 border-bottom">
+        <p class="pb-5 my-5"><%= article.content%></p>
+      </div>
+    </div>
+    <div class="container mt-5">
+      <h2 class="fw-bold">Add your comment</h2>
+      <form class="mt-3">
+        <div class="mb-3">
+          <input
+            placeholder="Name"
+            type="text"
+            class="form-control"
+            name="userName"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="mb-3">
+          <textarea type="text" class="form-control" id="exampleInputPassword1"> </textarea>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2 class="fw-bold">Comments (<%= comments.length %>)</h2>
+      <% for (const comment of comments) { %>
+
+      <div class="row border-bottom mt-3">
+        <p>"<%= comment.userComment %>"</p>
+        <p class="text-body-secondary fst-italic"><%= comment.userName %></p>
+      </div>
+      <% } %>
+    </div>
+    <%- include("./partials/footer.ejs") %>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"

@@ -18,8 +18,16 @@
  * son: index, show, store, update y destroy.
  */
 
+const { Article, Author } = require("../models");
+
 // Display a listing of the resource.
-async function index(req, res) {}
+async function index(req, res) {
+  const articles = await Article.findAll({
+    include: [Author],
+    sort: ["createdAt", "DESC"],
+  });
+  return res.json({ articles });
+}
 
 // Display the specified resource.
 async function show(req, res) {}

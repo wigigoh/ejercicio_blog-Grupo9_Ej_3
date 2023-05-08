@@ -16,87 +16,39 @@
   <body>
     <%- include("./partials/navbar.ejs") %>
 
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, neque optio laudantium sed
-      excepturi repellat. Nostrum dolorum exercitationem ad similique tempore deleniti possimus in
-      illum, ut animi repellat, autem eos? Est error suscipit ducimus! Ab molestiae voluptates iure
-      tenetur excepturi dolores? Ullam saepe at excepturi libero? A omnis assumenda repellendus
-      corrupti reprehenderit, rem blanditiis, ducimus aliquid quae, voluptate deserunt ipsa! Illo
-      doloribus exercitationem, neque totam, perspiciatis natus molestiae ad ullam consequatur quasi
-      placeat odio temporibus corrupti? Veniam quasi molestiae voluptas harum maiores facilis,
-      deserunt qui quisquam aperiam quia aspernatur est. Molestias provident blanditiis consectetur,
-      voluptatibus dolores corrupti optio animi? Aperiam incidunt autem, distinctio pariatur totam,
-      laborum nobis minus in eius consequatur recusandae tenetur aspernatur, nihil explicabo
-      dignissimos aut quaerat laudantium! Laborum amet explicabo iste sint delectus reiciendis quas
-      minus assumenda asperiores illum laboriosam et ipsa doloribus, sunt enim quo ab rem debitis
-      tempora exercitationem aliquid. Veniam et iusto sit ipsum. Ullam, sint omnis. Atque,
-      distinctio excepturi reprehenderit doloremque amet ratione ipsum non esse quam, voluptate
-      magni pariatur adipisci, modi voluptatem alias tempora quae obcaecati ex molestiae quia magnam
-      enim iure? Nobis quaerat expedita aperiam iste, ipsam eligendi iure. Deserunt obcaecati
-      suscipit harum accusantium, porro reiciendis animi, ducimus reprehenderit officia repellendus
-      eius in molestias commodi quam inventore sapiente, nam voluptatibus numquam? Dicta delectus
-      rem fuga? Deserunt modi, reiciendis tempora incidunt non culpa illum sed excepturi ipsam
-      debitis eos fugiat? Eligendi officiis cupiditate voluptatum porro quos explicabo odio nam enim
-      repellat incidunt. Iusto quos nostrum consequuntur labore autem doloribus modi sequi
-      aspernatur dolores fugiat perspiciatis doloremque, numquam molestias quisquam natus esse
-      facilis, tenetur veritatis iste totam? Enim ea nulla necessitatibus unde iure. Quis amet
-      commodi, quas assumenda beatae nisi doloremque facilis magni accusantium modi sint expedita
-      sit aut neque possimus delectus? Officia quidem consequatur deleniti, ex nulla atque ipsum
-      culpa magnam voluptas! Fugiat, esse ducimus aliquam ea animi ipsum sit? Reprehenderit sint
-      consequuntur ab sapiente esse debitis quis recusandae perferendis voluptates quo? Repellat
-      explicabo atque perspiciatis blanditiis illo exercitationem nostrum unde beatae! Dolorem
-      ratione ipsa distinctio repellendus. Quam dolorem explicabo veritatis vitae id voluptatum vel
-      placeat, cupiditate maiores nulla repellat natus, hic odit! Similique porro rem deleniti.
-      Veritatis, totam. Ipsa, tempore maiores. Minus quisquam pariatur officia possimus
-      necessitatibus numquam tenetur explicabo nam, culpa iste ut aliquam quae, expedita soluta
-      quibusdam a reprehenderit magnam tempora. Debitis maxime incidunt, aliquam repellat optio
-      veniam iusto. Quae quo nihil nemo esse rem possimus magnam quis, temporibus obcaecati culpa
-      illo voluptatum autem fugit eius incidunt rerum, aperiam quibusdam nostrum labore deleniti
-      dolor tenetur. Dicta perferendis numquam veniam? Ducimus aspernatur voluptatibus recusandae,
-      mollitia expedita rerum porro magni. Architecto nihil tenetur fugit dolorum nulla! Iste natus
-      saepe laborum possimus. Tenetur sequi veniam dolorem aliquam quos aut dicta provident
-      corrupti? Aspernatur reiciendis quibusdam quisquam autem suscipit error a pariatur similique
-      laudantium, fugit repellat sed dicta, veritatis minus voluptates facilis labore optio sapiente
-      minima ut. Sit blanditiis nulla sunt. Et, error. Doloremque esse incidunt nesciunt ut et,
-      accusantium officia facere eos alias. Provident eaque mollitia id, iusto magnam voluptas
-      dolorum vitae quibusdam veniam ut accusamus voluptatibus fuga ducimus, natus officia ipsa?
-      Optio adipisci praesentium quia rerum nobis nemo aliquid dolorem quas natus officia dolorum
-      quae quod atque vel officiis sed explicabo corporis omnis, voluptate labore nihil, cupiditate
-      quidem qui! Dignissimos, error? Sapiente inventore vel saepe cumque cupiditate assumenda
-      excepturi debitis incidunt nostrum distinctio quos maxime, tempora neque quam rerum porro,
-      veritatis necessitatibus sequi similique. Cupiditate delectus, repellendus officia dignissimos
-      excepturi molestiae. Cupiditate magni quas veniam non, aliquid culpa officia quo, eos
-      exercitationem eaque voluptatem. Qui et voluptatibus nemo vel sed ducimus officia incidunt
-      provident, nulla voluptatem exercitationem? Sit excepturi impedit enim.
-    </p>
-
     <div class="container-fluid w-75 pt-5">
       <div class="pb-4 d-flex justify-content-between">
-        <h1>Listado de Usuarios</h1>
-        <a href="/usuarios/crear" type="submit" class="btn btn-success mb-3">Nuevo Usuario</a>
+        <h1>Articles</h1>
+        <a href="/usuarios/crear" type="submit" class="btn btn-success mb-3">Nuevo</a>
       </div>
       <table class="table table-light table-bordered table-striped">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Edad</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Image</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Author</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <% for (user of users) {%>
+          <% for (const article of articles) {%>
           <tr>
-            <td><%=user.id%></td>
-            <td><%=user.firstname%></td>
-            <td><%=user.lastname%></td>
-            <td><%=user.age%></td>
+            <td class="fw-bold"><%=article.id%></td>
+            <td class="w-25"><%=article.title%></td>
+            <td class="text-truncate" style="max-width: 300px"><%=article.content%></td>
             <td>
-              <a href="/usuarios/editar/<%=user.id%>" type="submit" class="btn btn-primary mb-3"
+              <img src="<%= article.image %>" alt="" style="width: 70px; height: 70px" />
+            </td>
+            <td><%=article.createdAt%></td>
+            <td><%=article.author.authorFirstname%> <%=article.author.authorLastname%></td>
+            <td>
+              <a href="/usuarios/editar/<%=article.id%>" type="submit" class="btn btn-primary mb-3"
                 >Editar</a
               >
-              <a href="/usuarios/eliminar/<%=user.id%>" type="submit" class="btn btn-danger mb-3"
+              <a href="/usuarios/eliminar/<%=article.id%>" type="submit" class="btn btn-danger mb-3"
                 >Eliminar</a
               >
               <% } %>
@@ -105,6 +57,7 @@
         </tbody>
       </table>
     </div>
+    <%- include("./partials/footer.ejs") %>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"

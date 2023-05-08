@@ -17,11 +17,17 @@
  */
 
 const { Article } = require("../models");
+const { format } = require("date-fns");
+const { es } = require("date-fns/locale");
 
 async function showAdmin(req, res) {
-  const articles = await Article.findAll();
-  console.log(articles);
-  res.render("admin", { articles });
+  const articles = await Article.findAll({ include: "author" });
+  articles.forEach((article) => {
+    article.dataValues.createdAt = format(article.dataValues.createdAt, "yyyy'-'MM'-'dd hh:mm:ss", {
+      locale: es,
+    });
+  });
+  return res.render("admin", { articles });
 }
 
 // Otros handlers...
