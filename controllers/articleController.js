@@ -54,9 +54,8 @@ async function store(req, res) {
   await Article.create({
     title: req.body.title,
     content: req.body.content,
-    image: req.body.image,
+    image: "/img/image-dummy.png",
     authorId: authorId,
-    // authorId: authorId.dataValues.id,
   });
 
   return res.redirect(`/admin`);

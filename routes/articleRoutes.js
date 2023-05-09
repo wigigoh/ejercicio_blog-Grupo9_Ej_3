@@ -8,6 +8,7 @@ const commentController = require("../controllers/commentController");
 
 router.get("/", articleController.index);
 router.get("/crear", articleController.create);
+router.post("/crear", articleController.store);
 router.post("/:id", commentController.store);
 router.get("/:id", articleController.show);
 router.get("/:id/editar", articleController.edit);
