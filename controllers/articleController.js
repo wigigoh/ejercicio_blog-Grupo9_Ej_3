@@ -37,12 +37,29 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  await Article.Create({
+  let authorId;
+  const existingAuthor = await Author.findOne({ where: { authorEmail: req.body.email } });
+  if (existingAuthor) {
+    authorId = existingAuthor.dataValues.id;
+  } else {
+    await Author.create({
+      authorFirstname: req.body.firstName,
+      authorLastname: req.body.lastName,
+      authorEmail: req.body.email,
+    });
+    const newAuthorId = await Author.findOne({ where: { authorEmail: req.body.email } });
+    authorId = newAuthorId.dataValues.id;
+  }
+
+  await Article.create({
     title: req.body.title,
     content: req.body.content,
-    authorId: 88,
+    image: req.body.image,
+    authorId: authorId,
+    // authorId: authorId.dataValues.id,
   });
-  res.redirect(`/:${id}`);
+
+  return res.redirect(`/admin`);
 }
 
 // Show the form for editing the specified resource.

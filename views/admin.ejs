@@ -17,7 +17,7 @@
     <div class="container-fluid w-75 pt-5 mt-5">
       <div class="pb-4 d-flex justify-content-between">
         <h1>Articles</h1>
-        <a href="/crear" class="btn btn-success mb-3">Nuevo</a>
+        <a href="/crear" class="btn btn-success mb-3">New</a>
       </div>
       <table class="table table-light table-bordered table-striped">
         <thead>
@@ -33,25 +33,32 @@
         </thead>
         <tbody>
           <% for (const article of articles) {%>
-          <tr>
-            <td class="fw-bold text-center"><%=article.id%></td>
-            <td class="w-25"><%=article.title%></td>
-            <td class="text-truncate" style="max-width: 300px"><%=article.content%></td>
-            <td>
-              <img src="<%= article.image %>" alt="" style="width: 70px; height: 70px" />
-            </td>
-            <td><%=article.createdAt%></td>
-            <td><%=article.author.authorFirstname%> <%=article.author.authorLastname%></td>
-            <td>
-              <a href="/editar/<%=article.id%>" type="submit" class="btn btn-primary mb-3"
-                >Editar</a
-              >
-              <a href="/eliminar/<%=article.id%>" type="submit" class="btn btn-danger mb-3"
-                >Eliminar</a
-              >
-              <% } %>
-            </td>
-          </tr>
+            <tr>
+              <td class="fw-bold text-center">
+                <%=article.id%>
+              </td>
+              <td class="w-25">
+                <%=article.title%>
+              </td>
+              <td class="text-truncate" style="max-width: 300px">
+                <%=article.content%>
+              </td>
+              <td>
+                <img src="<%= article.image %>" alt="" style="width: 70px; height: 70px" />
+              </td>
+              <td>
+                <%=article.createdAt%>
+              </td>
+              <td>
+                <%=article.author.authorFirstname%>
+                  <%=article.author.authorLastname%>
+              </td>
+              <td>
+                <a href="/editar/<%=article.id%>" type="submit" class="btn btn-primary mb-3">Editar</a>
+                <a href="/eliminar/<%=article.id%>" type="submit" class="btn btn-danger mb-3">Eliminar</a>
+                <% } %>
+              </td>
+            </tr>
         </tbody>
       </table>
     </div>
