@@ -7,12 +7,12 @@ const commentController = require("../controllers/commentController");
 // ...
 
 router.get("/", articleController.index);
-router.get("/crear", articleController.create);
-router.post("/crear", articleController.store);
-router.post("/:id", commentController.store);
-router.get("/:id", articleController.show);
-router.get("/:id/editar", articleController.edit);
-router.patch("/:id", articleController.update);
-router.delete("/:id", articleController.destroy);
+router.get("/articulos/crear", articleController.create);
+router.post("/articulos/crear", articleController.store);
+router.post("/articulos/:id", commentController.store);
+router.get("/articulos/:id", articleController.show);
+router.get("/articulos/:id/editar", articleController.edit);
+router.patch("/articulos/:id", articleController.update);
+router.delete("/articulos/:id", articleController.destroy);
 
 module.exports = router;
