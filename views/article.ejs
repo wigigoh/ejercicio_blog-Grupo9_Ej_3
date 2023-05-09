@@ -51,10 +51,10 @@
       </form>
     </div>
 
-    <div class="container mt-5">
+    <div class="container my-5">
       <h2 class="fw-bold">
-        Comments (<% if (article.comments.length >= 1) { %> <%= article.comments.length %> <% } else
-        { "Se el primero en comentar" }%>)
+        <% if(article.comments.length >= 1){ %> Comments (<%= article.comments.length %>) <% } else{
+        %> ¡Se el primero en comentar! <% } %>
       </h2>
       <% for (const comment of article.comments) { %>
 
