@@ -1,6 +1,7 @@
 const { Article, Comment, Author } = require("../models");
 const { format } = require("date-fns");
 const { es } = require("date-fns/locale");
+const formidable = require("formidable");
 
 // Display a listing of the resource.
 
@@ -50,6 +51,18 @@ async function store(req, res) {
     const newAuthorId = await Author.findOne({ where: { authorEmail: req.body.email } });
     authorId = newAuthorId.dataValues.id;
   }
+
+  // let imagePath;
+  // const form = formidable({
+  //   multiples: true,
+  // });
+  // form.parse(req, (err, fields, files) => {
+  //   if (err) {
+  //     console.error(err);
+  //     return res.status(500).send("Internal server error");
+  //   }
+  //   console.log({ files });
+  // });
 
   await Article.create({
     title: req.body.title,
