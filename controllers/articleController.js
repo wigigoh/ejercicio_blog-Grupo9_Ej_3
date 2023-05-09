@@ -52,18 +52,6 @@ async function store(req, res) {
     authorId = newAuthorId.dataValues.id;
   }
 
-  // let imagePath;
-  // const form = formidable({
-  //   multiples: true,
-  // });
-  // form.parse(req, (err, fields, files) => {
-  //   if (err) {
-  //     console.error(err);
-  //     return res.status(500).send("Internal server error");
-  //   }
-  //   console.log({ files });
-  // });
-
   await Article.create({
     title: req.body.title,
     content: req.body.content,
