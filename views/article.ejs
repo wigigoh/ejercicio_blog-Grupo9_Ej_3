@@ -53,8 +53,8 @@
 
     <div class="container mt-5">
       <h2 class="fw-bold">
-        Comments (<%= article.comments.length >= 1 ? article.comments.length : "Se el primero en
-        comentar" %>)
+        Comments (<% if (article.comments.length >= 1) { %> <%= article.comments.length %> <% } else
+        { "Se el primero en comentar" }%>)
       </h2>
       <% for (const comment of article.comments) { %>
 
