@@ -11,6 +11,7 @@ module.exports = async () => {
       authorFirstname: faker.name.firstName(),
       authorLastname: faker.name.lastName(),
       authorEmail: faker.internet.email(),
+      password: faker.internet.password(),
     });
   }
 

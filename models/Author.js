@@ -19,6 +19,9 @@ class Author extends Model {
         authorEmail: {
           type: DataTypes.STRING,
         },
+        password: {
+          type: DataTypes.STRING,
+        },
       },
       {
         sequelize,
