@@ -12,7 +12,7 @@ async function index(req, res) {
   });
 
   articles.forEach((article) => {
-    article.dataValues.createdAt = format(article.dataValues.createdAt, "dd 'de' MMMM','  yyyy", {
+    article.createdAt = format(article.createdAt, "dd 'de' MMMM','  yyyy", {
       locale: es,
     });
   });
@@ -23,7 +23,7 @@ async function index(req, res) {
 async function show(req, res) {
   const article = await Article.findByPk(req.params.id, { include: [Author, Comment] });
 
-  article.dataValues.createdAt = format(article.dataValues.createdAt, "dd 'de' MMMM','  yyyy", {
+  article.createdAt = format(article.createdAt, "dd 'de' MMMM','  yyyy", {
     locale: es,
   });
 
