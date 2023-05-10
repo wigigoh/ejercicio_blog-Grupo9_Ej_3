@@ -21,14 +21,23 @@ app.use(
     saveUninitialized: false,
   }),
 );
+
 app.use(passport.session());
 passport.use(
-  new LocalStrategy(async function (username, password, done) {
+  new LocalStrategy({ usernameField: "email" }, async function (email, password, done) {
     try {
       //Buscar en la base de datos el usuario que se quiere conectar
-      const user = await User.findOne({ where: { email: username } });
+      const user = await User.findOne({ where: { email: email } });
       //Este usuario existe?
       //NO: damos por finalizada la autenticacion -> done(null, false, {message : "Credenciales Incorrectas"});
+      if (!user) {
+        return done(null, false, { message: "Credenciales Incorrectas" });
+      }
+      const checkPasswords = await bcrypt.compare(password, user.password);
+      if (!checkPasswords) {
+        return done(null, false, { message: "Credenciales Incorrectas" });
+      }
+      return done(null, user);
       //SI: seguimos autenticando
       //El password que ingreso el usuario, ¿es correcto? (bcrypt)
       //NO: damos por finalizada la autenticacion -> done(null, false, {message : "Credenciales Incorrectas"});
@@ -36,7 +45,7 @@ passport.use(
       //Lo unico que queda es confirmar la autenticacion del usuario -> return done (null, user);
     } catch (error) {
       //Si la promesa (Buscar al usuario en la base de datos) fue rechazada, damos por finalizada la autentcacion...
-      return done(error);
+      console.log(error);
     }
   }),
 );
@@ -56,7 +65,7 @@ passport.deserializeUser(async function (id, done) {
 
 //ruta protegida (solo acceso a usuarios logueados)
 
-app.get("/welcome", function (req, res) {
+app.get("/login", function (req, res) {
   if (req.isAuthenticated()) {
     res.send(`Te damos la bienvenida, ${req.user.firstname}!!`);
   } else {

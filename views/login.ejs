@@ -13,30 +13,18 @@
 
   <%- include("./partials/navbar.ejs") %>
 
-    <form class="container mt-5" method="store" action="/usuarios/registro" enctype="multipart/form-data">
+    <form class="container mt-5" method="post">
 
       <div class="row mt-5 g-3 mb-3">
-        <div class="col-md-6">
-          <label for="firstName" class="form-label">First Name</label>
-          <input type="text" class="form-control" name="firstName" placeholder="First name">
-        </div>
-        <div class="col-md-6">
-          <label for="lastName" class="form-label">Last Name</label>
-          <input type="text" class="form-control" name="lastName" placeholder="Last name">
-        </div>
         <div class="col-12">
           <label for="inputEmail4" class="form-label">Email</label>
           <input type="email" class="form-control" name="email" placeholder="example@example.com">
         </div>
-        <div class="col-md-6">
+        <div class="col-12">
             <label for="lastName" class="form-label">Contraseña</label>
             <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña">
         </div>
-        <div class="col-md-6">
-            <label for="lastName" class="form-label">Confirmar Contraseña</label>
-            <input type="password" class="form-control" name="confPassword" placeholder="Vuelva a escribir su contraseña">
-        </div>
-        <div class="col-auto">
+        <div class="col">
           <button type="submit" class="btn btn-success">Submit</button>
         </div>
 
