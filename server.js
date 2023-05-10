@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const routes = require("./routes");
 const methodOverride = require("method-override");
-const APP_PORT = process.env.APP_PORT || 3000;
+const APP_PORT = process.env.APP_PORT;
 const app = express();
 const session = require("express-session");
 const passport = require("passport");
@@ -29,20 +29,22 @@ passport.use(
       //Buscar en la base de datos el usuario que se quiere conectar
       const user = await User.findOne({ where: { email: email } });
       //Este usuario existe?
-      //NO: damos por finalizada la autenticacion -> done(null, false, {message : "Credenciales Incorrectas"});
       if (!user) {
-        return done(null, false, { message: "Credenciales Incorrectas" });
+        //NO: damos por finalizada la autenticacion
+
+        return done(null, false, { message: "Credenciales incorrectas" });
       }
-      const checkPasswords = await bcrypt.compare(password, user.password);
-      if (!checkPasswords) {
-        return done(null, false, { message: "Credenciales Incorrectas" });
-      }
-      return done(null, user);
       //SI: seguimos autenticando
       //El password que ingreso el usuario, ¿es correcto? (bcrypt)
-      //NO: damos por finalizada la autenticacion -> done(null, false, {message : "Credenciales Incorrectas"});
+      const checkPasswords = await bcrypt.compare(password, user.password);
+      if (!checkPasswords) {
+        //NO: damos por finalizada la autenticacion ->
+        return done(null, false, { message: "Credenciales Incorrectas" });
+      }
+
       //Si llegamos hasta aqui, el usuario existe e ingreso de manera correcta su contraseña!
-      //Lo unico que queda es confirmar la autenticacion del usuario -> return done (null, user);
+      //Lo unico que queda es confirmar la autenticacion del usuario ->
+      return done(null, user);
     } catch (error) {
       //Si la promesa (Buscar al usuario en la base de datos) fue rechazada, damos por finalizada la autentcacion...
       console.log(error);

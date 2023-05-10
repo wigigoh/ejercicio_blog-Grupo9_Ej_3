@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+
 const { sequelize } = require(".");
 
 class Author extends Model {
@@ -19,7 +20,7 @@ class Author extends Model {
         authorEmail: {
           type: DataTypes.STRING,
         },
-        password: {
+        authorPassword: {
           type: DataTypes.STRING,
         },
       },
