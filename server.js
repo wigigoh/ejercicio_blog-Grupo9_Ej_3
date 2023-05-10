@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(
   session({
-    secret: "algo",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   }),
