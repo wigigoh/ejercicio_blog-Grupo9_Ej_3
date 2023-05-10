@@ -1,5 +1,7 @@
 const { Author } = require("../models");
 const formidable = require("formidable");
+const bcrypt = require("bcryptjs");
+const passportConfig = require("../config/passport");
 
 //ver formulario de creacion
 async function create(req, res) {
@@ -11,36 +13,20 @@ async function store(req, res) {
   if (req.body.password === req.body.confPassword) {
     // const lastUserId = await Author.max("id");
     await Author.create({
-      firstname: req.body.firstName,
-      lastname: req.body.lastName,
-      email: req.body.email,
+      authorFirstname: req.body.firstName,
+      authorLastname: req.body.lastName,
+      authorEmail: req.body.email,
       password: await bcrypt.hash(req.body.password, 3),
     });
   } else {
-    alert("Contraseña no coincide");
-    console.log(fields);
+    console.log("Error de contraseña");
     return res.redirect("login");
   }
-  res.redirect("/");
-}
-
-//ver formulario de login
-async function show(req, res) {
-  res.render("login");
+  console.log("Usuario registrado");
+  return res.redirect("/");
 }
 
 module.exports = {
   create,
   store,
-  show,
 };
-
-// 2. Crear las siguientes rutas:
-// a. [GET] http://localhost:3000/registro.
-// b. [POST] http://localhost:3000/registro.
-// c. [GET] http://localhost:3000/login.
-// Documento confidencial. No compartir con terceros. Página 3 de 12
-// https://ha.dev
-// hola@ha.dev
-// d. [POST] http://localhost:3000/login.
-// e. [GET] http://localhost:3000/logout.

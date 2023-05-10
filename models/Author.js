@@ -20,7 +20,7 @@ class Author extends Model {
         authorEmail: {
           type: DataTypes.STRING,
         },
-        authorPassword: {
+        password: {
           type: DataTypes.STRING,
         },
       },
