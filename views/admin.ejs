@@ -19,7 +19,7 @@
     <div class="container-fluid w-75 pt-5 mt-5">
       <div class="pb-4 d-flex justify-content-between">
         <h1>Articles</h1>
-        <a href="/crear" class="btn btn-success mb-3">New</a>
+        <a href="/articulos/crear" class="btn btn-success mb-3">New</a>
       </div>
       <table class="table table-light table-bordered table-striped">
         <thead>
@@ -45,10 +45,12 @@
             <td><%=article.createdAt%></td>
             <td><%=article.author.authorFirstname%> <%=article.author.authorLastname%></td>
             <td>
-              <a href="/<%=article.id%>/editar" type="submit" class="btn btn-primary mb-3"
+              <a href="/articulos/<%=article.id%>/editar" type="submit" class="btn btn-primary mb-3"
                 >Editar</a
               >
-              <a href="<%=article.id%>" type="submit" class="btn btn-danger mb-3">Eliminar</a>
+              <form action="/articulos/<%=article.id%>/eliminar?_method=DELETE" method="POST">
+                <button class="btn btn-danger mb-3" type="submit">Eliminar</button>
+              </form>
               <% } %>
             </td>
           </tr>

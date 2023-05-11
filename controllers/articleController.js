@@ -5,19 +5,7 @@ const formidable = require("formidable");
 
 // Display a listing of the resource.
 
-async function index(req, res) {
-  const articles = await Article.findAll({
-    include: [Author, Comment],
-    sort: ["createdAt", "ASC"],
-  });
-
-  articles.forEach((article) => {
-    article.createdAt = format(article.createdAt, "dd 'de' MMMM','  yyyy", {
-      locale: es,
-    });
-  });
-  return res.render("home", { articles });
-}
+async function index(req, res) {}
 
 // Display the specified resource.
 async function show(req, res) {
@@ -64,17 +52,51 @@ async function store(req, res) {
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {
-  console.log("Edite este id");
+  const article = await Article.findByPk(req.params.id, { include: [Author, Comment] });
+  res.render("editArticle", { article });
 }
 
 // Update the specified resource in storage.
-async function update(req, res) {}
+async function update(req, res) {
+  const input = req.body;
+  const updateArticle = new Article.update(
+    {
+      title: input.title,
+      content: input.contentInput,
+    },
+    {
+      where: { id: articleId },
+    },
+  );
+
+  const updateUser = await User.update(
+    {
+      firstname: input.nameInput,
+      lastname: input.lastNameInput,
+      email: input.emailInput,
+    },
+    {
+      where: { userId: article.userId },
+    },
+  );
+
+  console.log();
+  res.redirect("/");
+}
 
 // Remove the specified resource from storage.
 async function destroy(req, res) {
-  console.log("Eliminé este id");
+  await Article.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  console.log("Eliminé este venom");
   return res.redirect("/admin");
 }
+
+// editar un articulo
 
 // Otros handlers...
 // ...

@@ -1,11 +1,12 @@
 <nav class="navbar bg-dark fixed-top">
   <div class="container px-5">
-    <a class="navbar-brand mb-0 h1 text-white" href="/">Hack the blog</a>
+    <a class="navbar-brand mb-0 h1 text-white" href="/">Hahack the blog</a>
     <div>
+      <%// if (req.user.isAuthenticated()) { %>
+      <a class="btn btn-secondary m-1" href="/admin">Admin</a>
+      <% //} else { %>
       <a class="btn btn-outline-primary m-1" href="/usuarios/registro">Sing Up</a>
       <a class="btn btn-success m-1" href="/login">Login</a>
-      <%// if (user.isAuthenticated()) { %>
-      <a class="btn btn-secondary m-1" href="/admin">Admin</a>
       <%// } %>
     </div>
   </div>

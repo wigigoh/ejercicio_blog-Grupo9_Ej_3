@@ -12,7 +12,7 @@ async function store(req, res) {
       console.log("Comment created");
     },
   );
-  return res.redirect(`/${req.params.id}`);
+  return res.redirect(`/articulos/${req.params.id}`);
 }
 
 module.exports = { store };

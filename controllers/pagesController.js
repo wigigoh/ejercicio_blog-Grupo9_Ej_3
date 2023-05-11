@@ -16,9 +16,22 @@
  * no debería existir.
  */
 
-const { Article } = require("../models");
+const { Article, Author, Comment } = require("../models");
 const { format } = require("date-fns");
 const { es } = require("date-fns/locale");
+
+async function index(req, res) {
+  const articles = await Article.findAll({
+    include: [Author, Comment],
+    sort: ["createdAt", "ASC"],
+  });
+  articles.forEach((article) => {
+    article.createdAt = format(article.createdAt, "dd 'de' MMMM','  yyyy", {
+      locale: es,
+    });
+  });
+  return res.render("home", { articles });
+}
 
 async function showAdmin(req, res) {
   const articles = await Article.findAll({ include: "author" });
@@ -34,5 +47,6 @@ async function showAdmin(req, res) {
 // ...
 
 module.exports = {
+  index,
   showAdmin,
 };

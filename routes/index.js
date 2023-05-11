@@ -2,7 +2,6 @@
  * No hay una única forma de organizar las rutas de un sitio web.
  * Una alternativa podría ser organizar las rutas por entidad:
  */
-const adminRoutes = require("./adminRoutes");
 const articleRoutes = require("./articleRoutes");
 const apiRoutes = require("./apiRoutes");
 const userRoutes = require("./userRoutes");
@@ -20,8 +19,8 @@ module.exports = (app) => {
    *
    */
 
-  app.use("/admin", adminRoutes);
-  app.use("/", articleRoutes);
+  app.use("/admin", privateRoutes);
+  app.use("/articulos", articleRoutes);
   app.use("/api", apiRoutes);
   // app.use("/articulo/:id", articleRoutes);
   app.use("/usuarios", userRoutes);
