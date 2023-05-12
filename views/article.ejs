@@ -46,7 +46,11 @@
           <textarea type="text" class="form-control" name="userComment"> </textarea>
         </div>
         <div class="d-grid gap-2">
+          <% if (locals.user){ %>
           <button type="submit" class="btn btn-primary">Send</button>
+          <% } else { %>
+          <a class="btn btn-success" href="/login">Log In</a>
+          <% } %>
         </div>
       </form>
     </div>
