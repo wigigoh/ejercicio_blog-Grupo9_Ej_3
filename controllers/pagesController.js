@@ -34,7 +34,7 @@ async function index(req, res) {
 }
 
 async function showAdmin(req, res) {
-  const articles = await Article.findAll({ include: "author" });
+  const articles = await Article.findAll({ where: { authorId: req.user.id }, include: "author" });
   articles.forEach((article) => {
     article.dataValues.createdAt = format(article.dataValues.createdAt, "yyyy'-'MM'-'dd hh:mm:ss", {
       locale: es,

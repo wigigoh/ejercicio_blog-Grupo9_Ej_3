@@ -7,7 +7,7 @@ faker.locale = "es";
 module.exports = async () => {
   const authors = [];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 30; i++) {
     authors.push({
       authorFirstname: faker.name.firstName(),
       authorLastname: faker.name.lastName(),

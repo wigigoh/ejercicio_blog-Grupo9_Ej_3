@@ -21,12 +21,12 @@ faker.locale = "es";
 module.exports = async () => {
   const articles = [];
 
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 80; i++) {
     articles.push({
       title: faker.lorem.sentence(5),
       content: faker.lorem.paragraphs(),
       image: "/img/image-dummy.png",
-      authorId: faker.datatype.number({ min: 1, max: 100 }),
+      authorId: faker.datatype.number({ min: 1, max: 30 }),
     });
   }
 

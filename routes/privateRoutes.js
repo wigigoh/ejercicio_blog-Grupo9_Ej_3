@@ -8,7 +8,7 @@ const pagesController = require("../controllers/pagesController");
 
 router.get("/welcome", ensureAuthenticated, function (req, res) {
   console.log(req.user.firstname);
-  res.send(`Te damos la bienvenida, ${req.user.authorFirstname}!!`);
+  return res.redirect("/admin");
 });
 
 router.get("/", ensureAuthenticated, pagesController.showAdmin);

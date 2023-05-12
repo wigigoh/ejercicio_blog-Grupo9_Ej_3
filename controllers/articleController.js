@@ -2,7 +2,7 @@ const { Article, Comment, Author } = require("../models");
 const { format } = require("date-fns");
 const { es } = require("date-fns/locale");
 const formidable = require("formidable");
-
+const sessions = require("express-session");
 // Display a listing of the resource.
 
 async function index(req, res) {}
@@ -26,28 +26,20 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  let authorId;
-  const existingAuthor = await Author.findOne({ where: { authorEmail: req.body.email } });
-  if (existingAuthor) {
-    authorId = existingAuthor.dataValues.id;
+  console.log(req.user.authorEmail);
+  const authorId = req.user.id;
+  if (!authorId) {
+    return res.redirect("/login");
   } else {
-    await Author.create({
-      authorFirstname: req.body.firstName,
-      authorLastname: req.body.lastName,
-      authorEmail: req.body.email,
+    await Article.create({
+      title: req.body.title,
+      content: req.body.content,
+      image: "/img/image-dummy.png",
+      authorId: req.user.id,
     });
-    const newAuthorId = await Author.findOne({ where: { authorEmail: req.body.email } });
-    authorId = newAuthorId.dataValues.id;
   }
-
-  await Article.create({
-    title: req.body.title,
-    content: req.body.content,
-    image: "/img/image-dummy.png",
-    authorId: authorId,
-  });
-
-  return res.redirect(`/admin`);
+  console.log("user", req.user.id);
+  return res.redirect("/admin");
 }
 
 // Show the form for editing the specified resource.
