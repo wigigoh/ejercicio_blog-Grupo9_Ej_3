@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ensureAuthenticated = require("../middleware/ensureAuthenticated");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const pagesController = require("../controllers/pagesController");
 
 // Rutas relacionadas al panel de control (Admin):

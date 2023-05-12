@@ -6,15 +6,16 @@ const session = require("express-session");
 
 const routes = require("./routes");
 const { passport, passportConfig } = require("./config/passport");
+const makeUserAvailableInViews = require("./middlewares/makeUserAvailableInViews");
 
 const APP_PORT = process.env.APP_PORT;
 const app = express();
 
 app.set("view engine", "ejs");
 
-app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -23,6 +24,7 @@ app.use(
   }),
 );
 app.use(passport.session());
+app.use(makeUserAvailableInViews);
 
 passportConfig();
 

@@ -18,54 +18,22 @@
     <%- include("./partials/navbar.ejs") %>
 
     <div class="container">
-      <form
-        class="fw-bold"
-        action="/articulos/<%= article.id %>"
-        method="post"
-        enctype="multipart/form-data"
-      >
+      <form class="fw-bold" action="/articulos/<%= article.id %>?_method=PATCH" method="post">
         <div class="mb-3">
-          <label for="nameInput" class="form-label my-1">Nombre</label>
+          <label for="title" class="form-label my-3">Titulo de la noticia</label>
           <input
             type="text"
             class="form-control"
-            id="nameInput"
-            name="nameInput"
-            value="<%= article.author.authorFirstname %>"
-            contentInput
-          />
-          <label for="lastNameInput" class="form-label my-3">Apellido</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lastNameInput"
-            name="lastNameInput"
-            value="<%= article.author.authorLastname %>"
-            contentInput
-          />
-          <label for="emailInput" class="form-label my-3">E-mail</label>
-          <input
-            type="email"
-            class="form-control"
-            id="emailInput"
-            name="emailInput"
-            value="<%= article.author.authorFirstname %><%= article.author.authorLastname%>@gmail.com"
-            contentInput
-          />
-          <label for="titleInput" class="form-label my-3">Titulo de la noticia</label>
-          <input
-            type="text"
-            class="form-control"
-            id="titleInput"
-            name="titleInput"
+            id="title"
+            name="title"
             value="<%= article.title %>"
           />
-          <label for="contentInput" class="form-label my-3">Contenido</label>
+          <label for="content" class="form-label my-3">Contenido</label>
           <textarea
             type="text"
             class="form-control"
-            id="contentInput"
-            name="contentInput"
+            id="content"
+            name="content"
             cols="25"
             rows="10"
           >
@@ -73,13 +41,11 @@
                   </textarea
           >
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      <form action="" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
+        <!-- <div>
           <label for="image" class="form-label text-white my-3">Seleccionar una imagen</label>
           <input id="image" name="image" type="file" class="form-control" />
-        </div>
+        </div> -->
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
       </form>
     </div>
 

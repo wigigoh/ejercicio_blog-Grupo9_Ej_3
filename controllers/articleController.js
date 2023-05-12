@@ -58,30 +58,19 @@ async function edit(req, res) {
 
 // Update the specified resource in storage.
 async function update(req, res) {
-  const input = req.body;
-  const updateArticle = new Article.update(
+  const article = req.body;
+  // article.id = req.params.id
+  const articleId = req.params.id;
+  await Article.update(
     {
-      title: input.title,
-      content: input.contentInput,
+      title: article.title,
+      content: article.content,
     },
     {
       where: { id: articleId },
     },
   );
-
-  const updateUser = await User.update(
-    {
-      firstname: input.nameInput,
-      lastname: input.lastNameInput,
-      email: input.emailInput,
-    },
-    {
-      where: { userId: article.userId },
-    },
-  );
-
-  console.log();
-  res.redirect("/");
+  res.redirect("/admin");
 }
 
 // Remove the specified resource from storage.

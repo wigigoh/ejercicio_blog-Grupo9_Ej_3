@@ -1,13 +1,13 @@
 <nav class="navbar bg-dark fixed-top">
   <div class="container px-5">
-    <a class="navbar-brand mb-0 h1 text-white" href="/">Hahack the blog</a>
+    <a class="navbar-brand mb-0 h1 text-white" href="/">Hack the blog</a>
     <div>
-      <%// if (req.user.isAuthenticated()) { %>
+      <% if (locals.user) { %>
       <a class="btn btn-secondary m-1" href="/admin">Admin</a>
-      <% //} else { %>
-      <a class="btn btn-outline-primary m-1" href="/usuarios/registro">Sing Up</a>
+      <% } else { %>
+      <a class="btn btn-outline-primary m-1" href="/usuarios/registro">Sign Up</a>
       <a class="btn btn-success m-1" href="/login">Login</a>
-      <%// } %>
+      <% } %>
     </div>
   </div>
 </nav>
