@@ -3,12 +3,13 @@ const router = express.Router();
 const articleController = require("../controllers/articleController");
 const commentController = require("../controllers/commentController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const authRole = require("../middlewares/authRole");
 
 // Rutas relacionadas a los artículos:
 // ...
 
 router.get("/", articleController.index);
-router.get("/crear", ensureAuthenticated, articleController.create);
+router.get("/crear", authRole.isAdmin, articleController.create);
 router.post("/crear", ensureAuthenticated, articleController.store);
 router.post("/:id", ensureAuthenticated, commentController.store);
 router.get("/:id", articleController.show);

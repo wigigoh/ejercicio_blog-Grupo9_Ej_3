@@ -1,13 +1,16 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const { Author } = require("../models");
+const { Author, Role } = require("../models");
 const bcrypt = require("bcryptjs");
 
 function passportConfig() {
   passport.use(
     new LocalStrategy({ usernameField: "authorEmail" }, async function (email, password, done) {
       try {
-        const user = await Author.findOne({ where: { authorEmail: email } });
+        const user = await Author.findOne({
+          where: { authorEmail: email },
+          include: { model: Role },
+        });
         if (!user) {
           console.log("El usuario no existe");
           return done(null, false, { message: "Credenciales incorrectas" });
