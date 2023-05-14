@@ -9,12 +9,12 @@ const authRole = require("../middlewares/authRole");
 // ...
 
 router.get("/", articleController.index);
-router.get("/crear", authRole.isAdmin, articleController.create);
+router.get("/crear", authRole.isWriter, articleController.create);
 router.post("/crear", ensureAuthenticated, articleController.store);
 router.post("/:id", ensureAuthenticated, commentController.store);
 router.get("/:id", articleController.show);
-router.get("/:id/editar", ensureAuthenticated, articleController.edit);
-router.patch("/:id", ensureAuthenticated, articleController.update);
-router.delete("/:id/eliminar", ensureAuthenticated, articleController.destroy);
+router.get("/:id/editar", authRole.isWriter, articleController.edit);
+router.patch("/:id", authRole.isWriter, articleController.update);
+router.delete("/:id/eliminar", authRole.isWriter, articleController.destroy);
 
 module.exports = router;

@@ -1,10 +1,26 @@
 function isAdmin(req, res, next) {
-  if (1 === 1) {
-    console.log(req.user);
+  if (req.user.roleId === 1) {
+    //console.log(req.user.authorEmail);
+    return next();
   } else {
-    req.session.redirectTo = req.query.redirectTo;
-    res.redirect("/login");
+    res.redirect("back");
   }
 }
 
-module.exports = { isAdmin };
+function isEditor(req, res, next) {
+  if (req.user.roleId <= 2) {
+    return next();
+  } else {
+    res.redirect("back");
+  }
+}
+
+function isWriter(req, res, next) {
+  if (req.user.roleId <= 3) {
+    return next();
+  } else {
+    res.redirect("back");
+  }
+}
+
+module.exports = { isAdmin, isEditor, isWriter };

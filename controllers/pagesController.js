@@ -34,13 +34,67 @@ async function index(req, res) {
 }
 
 async function showAdmin(req, res) {
-  const articles = await Article.findAll({ where: { authorId: req.user.id }, include: "author" });
-  articles.forEach((article) => {
-    article.dataValues.createdAt = format(article.dataValues.createdAt, "yyyy'-'MM'-'dd hh:mm:ss", {
-      locale: es,
+  if (req.user.roleId > 2) {
+    const articles = await Article.findAll({ where: { authorId: req.user.id }, include: "author" });
+    articles.forEach((article) => {
+      article.dataValues.createdAt = format(
+        article.dataValues.createdAt,
+        "yyyy'-'MM'-'dd hh:mm:ss",
+        {
+          locale: es,
+        },
+      );
     });
+    return res.render("admin", { articles });
+  } else {
+    const articles = await Article.findAll({ include: "author" });
+    return res.render("admin", { articles });
+  }
+}
+
+async function show(req, res) {
+  const authors = await Author.findAll();
+  return res.render("userPanel", { authors });
+}
+
+async function edit(req, res) {
+  const author = await Author.findByPk(req.params.id);
+
+  res.render("editUser", { author });
+}
+
+async function update(req, res) {
+  const author = req.body;
+  const authorId = req.params.id;
+  console.log(author);
+  await Author.update(
+    {
+      authorFirstname: author.firstName,
+      authorLastname: author.lastName,
+      authorEmail: author.email,
+      roleId: author.role,
+    },
+    {
+      where: { id: authorId },
+    },
+  );
+  return res.redirect("/panel-usuarios");
+}
+
+async function destroy(req, res) {
+  await Author.destroy({
+    where: {
+      id: req.params.id,
+    },
   });
-  return res.render("admin", { articles });
+
+  await Article.destroy({
+    where: {
+      authorEmail: req.params.email,
+    },
+  });
+
+  return res.redirect("/panel-usuarios");
 }
 
 // Otros handlers...
@@ -49,4 +103,8 @@ async function showAdmin(req, res) {
 module.exports = {
   index,
   showAdmin,
+  show,
+  edit,
+  update,
+  destroy,
 };

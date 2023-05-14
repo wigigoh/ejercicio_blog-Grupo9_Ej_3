@@ -17,10 +17,11 @@ async function store(req, res) {
       authorLastname: req.body.lastName,
       authorEmail: req.body.email,
       password: await bcrypt.hash(req.body.password, 3),
+      roleId: 4,
     });
   }
   if (newAuthor) {
-    req.login(newAuthor, () => res.redirect("/admin"));
+    req.login(newAuthor, () => res.redirect("/"));
     console.log(req.user);
   } else {
     res.redirect("back");

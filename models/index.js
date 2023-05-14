@@ -24,6 +24,7 @@ Article.belongsTo(Author);
 Article.hasMany(Comment);
 Comment.belongsTo(Article);
 Author.belongsTo(Role);
+Role.hasMany(Author);
 
 /**
  * Luego de definir los modelos, se pueden establecer relaciones entre los

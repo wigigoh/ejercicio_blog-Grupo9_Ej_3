@@ -38,7 +38,7 @@ async function store(req, res) {
       authorId: req.user.id,
     });
   }
-  console.log("user", req.user.id);
+
   return res.redirect("/admin");
 }
 
@@ -51,7 +51,6 @@ async function edit(req, res) {
 // Update the specified resource in storage.
 async function update(req, res) {
   const article = req.body;
-  // article.id = req.params.id
   const articleId = req.params.id;
   await Article.update(
     {
@@ -73,7 +72,6 @@ async function destroy(req, res) {
     },
   });
 
-  console.log("Eliminé este venom");
   return res.redirect("/admin");
 }
 
