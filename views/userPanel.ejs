@@ -50,7 +50,7 @@
                 class="btn btn-primary mb-3"
                 >Editar</a
               >
-              <% if (locals.user.roleId <= 1) { %>
+              <% if (locals.user.role.code < 200) { %>
 
               <form action="/panel-usuarios/<%=author.id%>/eliminar?_method=DELETE" method="POST">
                 <button class="btn btn-danger mb-3" type="submit">Eliminar</button>

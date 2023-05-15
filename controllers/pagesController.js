@@ -34,8 +34,12 @@ async function index(req, res) {
 }
 
 async function showAdmin(req, res) {
-  if (req.user.roleId > 2) {
-    const articles = await Article.findAll({ where: { authorId: req.user.id }, include: "author" });
+  if (req.user.role.code > 300) {
+    const articles = await Article.findAll({
+      where: { authorId: req.user.id },
+      include: "author",
+      order: [["createdAt", "DESC"]],
+    });
     articles.forEach((article) => {
       article.dataValues.createdAt = format(
         article.dataValues.createdAt,
@@ -47,7 +51,7 @@ async function showAdmin(req, res) {
     });
     return res.render("admin", { articles });
   } else {
-    const articles = await Article.findAll({ include: "author" });
+    const articles = await Article.findAll({ include: "author", order: [["createdAt", "DESC"]] });
     return res.render("admin", { articles });
   }
 }
@@ -66,7 +70,7 @@ async function edit(req, res) {
 async function update(req, res) {
   const author = req.body;
   const authorId = req.params.id;
-  console.log(author);
+
   await Author.update(
     {
       authorFirstname: author.firstName,
@@ -82,15 +86,15 @@ async function update(req, res) {
 }
 
 async function destroy(req, res) {
-  await Author.destroy({
-    where: {
-      id: req.params.id,
-    },
-  });
-
   await Article.destroy({
     where: {
       authorEmail: req.params.email,
+    },
+  });
+
+  await Author.destroy({
+    where: {
+      id: req.params.id,
     },
   });
 

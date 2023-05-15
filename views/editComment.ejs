@@ -21,39 +21,40 @@
     <main class="container">
       <form
         class="fw-bold container"
-        action="/articulos/<%= article.id %>?_method=PATCH"
+        action="/comentarios/<%= comment.id %>?_method=PATCH"
         method="post"
       >
         <div class="row mt-5 g-3 mb-3">
           <div class="col-12">
             <div class="mb-3">
-              <label for="title" class="form-label my-3">Titulo de la noticia</label>
+              <label for="name" class="form-label my-3">Nombre</label>
               <input
                 type="text"
                 class="form-control"
-                id="title"
-                name="title"
-                value="<%= article.title %>"
+                id="name"
+                name="name"
+                value="<%= comment.userName %>"
               />
-              <label for="content" class="form-label my-3">Contenido</label>
+            </div>
+
+            <div class="mb-3">
+              <label for="content" class="form-label my-3">Comentario</label>
               <textarea
                 type="text"
                 class="form-control"
                 id="content"
                 name="content"
-                cols="25"
+                value=""
+                cols="30"
                 rows="10"
               >
-<%= article.content %></textarea
+<%= comment.userComment %></textarea
               >
             </div>
           </div>
         </div>
-        <!-- <div>
-          <label for="image" class="form-label text-white my-3">Seleccionar una imagen</label>
-          <input id="image" name="image" type="file" class="form-control" />
-        </div> -->
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+        <button type="submit" class="btn btn-primary mt-3">Aceptar</button>
       </form>
     </main>
 

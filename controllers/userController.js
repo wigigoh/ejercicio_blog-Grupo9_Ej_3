@@ -1,4 +1,4 @@
-const { Author } = require("../models");
+const { Author, Article } = require("../models");
 const formidable = require("formidable");
 const bcrypt = require("bcryptjs");
 const passportConfig = require("../config/passport");
@@ -22,24 +22,25 @@ async function store(req, res) {
   }
   if (newAuthor) {
     req.login(newAuthor, () => res.redirect("/"));
-    console.log(req.user);
   } else {
     res.redirect("back");
   }
 }
 
 async function destroy(req, res) {
+  await Article.destroy({
+    where: {
+      authorId: req.user.id,
+    },
+  });
+
   await Author.destroy({
     where: {
       id: req.user.id,
     },
   });
 
-  await Article.destroy({
-    where: {
-      authorEmail: req.user.authorEmail,
-    },
-  });
+  res.redirect("/");
 }
 module.exports = {
   create,

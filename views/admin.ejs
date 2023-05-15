@@ -53,7 +53,7 @@
               <a href="/articulos/<%=article.id%>/editar" type="submit" class="btn btn-primary mb-3"
                 >Editar</a
               >
-              <% if (locals.user.roleId <= 1) { %>
+              <% if (locals.user.role.code < 200 || locals.user.id === article.authorId ) { %>
 
               <form action="/articulos/<%=article.id%>/eliminar?_method=DELETE" method="POST">
                 <button class="btn btn-danger mb-3" type="submit">Eliminar</button>

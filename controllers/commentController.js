@@ -1,4 +1,4 @@
-const { Comment } = require("../models");
+const { Comment, Author } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -25,20 +25,37 @@ async function store(req, res) {
 }
 
 // Show the form for editing the specified resource.
-async function edit(req, res) {}
+async function edit(req, res) {
+  const comment = await Comment.findByPk(req.params.id);
+
+  res.render("editComment", { comment });
+}
 
 // Update the specified resource in storage.
-async function update(req, res) {}
+async function update(req, res) {
+  const comment = req.body;
+  const commentId = req.params.id;
+  await Comment.update(
+    {
+      userName: comment.name,
+      userComment: comment.content,
+    },
+    {
+      where: { id: commentId },
+    },
+  );
+  res.redirect("/");
+}
 
 // Remove the specified resource from storage.
 async function destroy(req, res) {
-  // await Comment.destroy({
-  //   where: {
-  //     articleId: req.params.id,
-  //   },
-  // });
+  await Comment.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
 
-  return res.redirect("/admin");
+  return res.redirect("back");
 }
 
 // Otros handlers...

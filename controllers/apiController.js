@@ -24,7 +24,7 @@ const { Article, Author, Comment } = require("../models");
 async function index(req, res) {
   const articles = await Article.findAll({
     include: [Author, Comment],
-    sort: ["createdAt", "DESC"],
+    order: ["createdAt", "DESC"],
   });
   return res.json({ articles });
 }

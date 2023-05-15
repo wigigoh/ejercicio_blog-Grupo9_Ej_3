@@ -18,17 +18,14 @@
         </p>
         <ul class="dropdown-menu bg-danger">
           <li>
-            <form
-              action="/panel-usuarios/<%=locals.user.id%>/eliminar?_method=DELETE"
-              method="post"
-            >
+            <form action="/usuarios/?_method=DELETE" method="post">
               <button class="dropdown-item bg-danger text-white">Eliminar Cuenta</button>
             </form>
           </li>
         </ul>
       </div>
 
-      <% if (locals.user.roleId <= 3) { %> <% if ( locals.user.roleId <= 1) { %>
+      <% if (locals.user.role.code < 400) { %> <% if ( locals.user.role.code < 200) { %>
       <a class="btn btn-secondary m-1" href="/panel-usuarios">Panel de usuarios</a>
 
       <% } %>

@@ -58,17 +58,8 @@
                 value="<%= author.authorEmail %>"
               />
             </div>
-
+            <% if (author.authorEmail !== locals.user.authorEmail) { %>
             <div class="mb-3">
-              <!-- <label for="role" class="form-label my-3">Rol</label>
-              <input
-                type="text"
-                class="form-control"
-                id="role"
-                name="role"
-                value="<%=// roles[author.roleId] %>"
-              /> -->
-
               <label for="role">
                 <input type="radio" id="role" name="role" value="1" />
                 Admin
@@ -89,13 +80,14 @@
                 Lector
               </label>
             </div>
+            <% } %>
           </div>
         </div>
         <!-- <div>
           <label for="image" class="form-label text-white my-3">Seleccionar una imagen</label>
           <input id="image" name="image" type="file" class="form-control" />
         </div> -->
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <button type="submit" class="btn btn-primary mt-3">Aceptar</button>
       </form>
     </main>
 

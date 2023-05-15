@@ -16,7 +16,6 @@ async function show(req, res) {
   });
 
   return res.render("article", { article });
-  // res.json(article)
 }
 
 // Show the form for creating a new resource

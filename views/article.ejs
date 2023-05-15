@@ -66,11 +66,14 @@
       <div class="row border-bottom mt-3">
         <p>"<%= comment.userComment %>"</p>
         <p class="text-body-secondary fst-italic"><%= comment.userName %></p>
-        <% if (locals.user.roleId <= 2) { %>
-        <form action="/comentarios/:id/eliminar?_method=DELETE" method="post">
+        <% if (locals.user.role.code < 300) { %>
+        <form action="/comentarios/<%= comment.id %>/eliminar?_method=DELETE" method="post">
           <button class="btn btn-danger w-25 mb-3 mx-2">Eliminar comentario</button>
+
+          <a href="/comentarios/<%= comment.id %>/editar" class="btn btn-primary w-25 mb-3 mx-2"
+            >Editar comentario
+          </a>
         </form>
-        <a href="" class="btn btn-primary w-25 mb-3 mx-2">Editar comentario</a>
         <% } %>
       </div>
       <% } %>
