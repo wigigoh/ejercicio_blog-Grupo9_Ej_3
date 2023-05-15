@@ -28,7 +28,21 @@ async function store(req, res) {
   }
 }
 
+async function destroy(req, res) {
+  await Author.destroy({
+    where: {
+      id: req.user.id,
+    },
+  });
+
+  await Article.destroy({
+    where: {
+      authorEmail: req.user.authorEmail,
+    },
+  });
+}
 module.exports = {
   create,
   store,
+  destroy,
 };

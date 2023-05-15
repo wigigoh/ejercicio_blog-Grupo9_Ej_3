@@ -26,7 +26,6 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  console.log(req.user.authorEmail);
   const authorId = req.user.id;
   if (!authorId) {
     return res.redirect("/login");

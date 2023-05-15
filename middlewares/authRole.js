@@ -1,6 +1,6 @@
 function isAdmin(req, res, next) {
   if (req.user.roleId === 1) {
-    //console.log(req.user.authorEmail);
+    console.log(req.user.role.code);
     return next();
   } else {
     res.redirect("back");
